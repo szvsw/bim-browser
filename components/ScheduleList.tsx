@@ -19,20 +19,16 @@ type ScheduleProps = {
 
 export const ScheduleList: React.FC<ScheduleProps> = ({project})  => {
   const [schedule,setSchedule] = useState<Schedule | null | undefined>()
-  // const selectSchedule = useCallback(() => {
-  //   fn(deps)
-  // }, [deps])
+  //TODO: Fix styling, schedule table should not be in button group!
   return (
     <>
-    
       <Stack sx={{mt:"1rem", ml:"3rem"}} spacing={3} divider={<Divider flexItem />}>
        <Box>
-    <ButtonGroup orientation="vertical">
-
-      {project?.schedules.map((schedule: Schedule)=><Button onClick={() => setSchedule(schedule)}>{schedule.title}</Button>)}
-    {schedule && GenerateTable(schedule)}
-    </ButtonGroup>
-</Box>
+        <ButtonGroup orientation="vertical">
+          {project?.schedules.map((schedule: Schedule)=><Button onClick={() => setSchedule(schedule)}>{schedule.title}</Button>)}
+          {schedule && GenerateTable(schedule)}
+        </ButtonGroup>
+      </Box>
       </Stack>
     </>
   )
