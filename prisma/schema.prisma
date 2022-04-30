@@ -14,3 +14,20 @@ enum Role {
   USER
   ADMIN
 }
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  title     String
+  data      Json
+  headings  String[]
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId Int
+
+  @@unique([projectId, title], name: "scheduleIdentifier")
+}
+
+model Project {
+  id        Int        @id @default(autoincrement())
+  title     String
+  schedules Schedule[]
+}

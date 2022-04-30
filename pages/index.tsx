@@ -1,8 +1,8 @@
-// import Link from "next/link";
-import  Typography from "@mui/material/Typography";
-
+import {Header} from '../components/Header'
 export default function App() {
   return (
-  <Typography>Hello World</Typography>
+  <>
+    <Header/>
+  </>
   );
 }
