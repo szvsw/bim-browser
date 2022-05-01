@@ -22,11 +22,11 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <Container sx={{mt: "2rem", ml: "2rem"}}>
+      <Container sx={{ml: "0rem"}}>
       <Typography variant="h2">BIM Data Browser</Typography>
 
       </Container>
-      <Stack sx={{mt:"1rem", ml:"3rem"}} spacing={3} direction="row" divider={<Divider orientation="vertical" flexItem />}>
+      <Stack sx={{mt:"1rem"}} spacing={3} direction="row" divider={<Divider orientation="vertical" flexItem />}>
 
         
         {projects.map((project: Project)=><Link key={project.id} href={`/project/${project.id}`}><Button onClick={()=>projectContext.setProject ? projectContext.setProject(project) : null} variant={projectContext?.project?.id==project.id ? 'contained' : 'outlined'} >{project.title}</Button></Link>)}

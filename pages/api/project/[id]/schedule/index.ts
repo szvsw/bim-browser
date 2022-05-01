@@ -16,7 +16,6 @@ export default async function handler(
       where: {projectId: projectId, title: {notIn: schedules.map((schedule: Schedule)=>schedule.title)}}
     })
     schedules.map(async (schedule: Schedule)=> {
-      console.log(`Writing schedule ${schedule.title}`)
       await prisma.schedule.upsert({
         where: {
           scheduleIdentifier: {

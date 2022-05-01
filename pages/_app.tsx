@@ -11,6 +11,7 @@ import createEmotionCache from "../lib/emotionCache";
 
 import "../styles/global.css";
 import { ProjectContextProvider } from "context/ProjectContext";
+import { Box } from "@mui/material";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -30,7 +31,9 @@ export default function MyApp(props: MyAppProps) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <ProjectContextProvider>
-          <Component {...pageProps} />
+          <Box sx={{p:"2rem"}}>
+            <Component {...pageProps} />
+          </Box>
         </ProjectContextProvider>
       </ThemeProvider>
     </CacheProvider>

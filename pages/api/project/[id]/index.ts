@@ -10,7 +10,7 @@ export default async function handle(
   if (req.method === 'GET') {
     const project = await prisma.project.findUnique({
       where: {id},
-      include: {schedules: true}
+      include: {schedules: true, levels: {include: {rooms: true}}}
     })
     return res.json(project)
   }

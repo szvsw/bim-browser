@@ -26,8 +26,32 @@ model Schedule {
   @@unique([projectId, title], name: "scheduleIdentifier")
 }
 
+model Level {
+  name      String
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+  rooms     Room[]
+
+  @@id([name, projectId])
+}
+
+model Room {
+  name      String
+  number    String
+  level     Level   @relation(fields: [levelName, projectId], references: [name, projectId])
+  levelName String
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+  edges     Json
+  location  Float[]
+
+  @@id([number, projectId])
+}
+
 model Project {
   id        Int        @id @default(autoincrement())
   title     String
   schedules Schedule[]
+  levels    Level[]
+  rooms     Room[]
 }

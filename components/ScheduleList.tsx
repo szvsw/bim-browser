@@ -18,17 +18,17 @@ type ScheduleProps = {
 }
 
 export const ScheduleList: React.FC<ScheduleProps> = ({project})  => {
-  const [schedule,setSchedule] = useState<Schedule | null | undefined>()
+  const [selectedSchedule,setSelectedSchedule] = useState<Schedule | null | undefined>()
   //TODO: Fix styling, schedule table should not be in button group!
   return (
     <>
-      <Stack sx={{mt:"1rem", ml:"3rem"}} spacing={3} divider={<Divider flexItem />}>
-       <Box>
-        <ButtonGroup orientation="vertical">
-          {project?.schedules.map((schedule: Schedule)=><Button onClick={() => setSchedule(schedule)}>{schedule.title}</Button>)}
-          {schedule && GenerateTable(schedule)}
-        </ButtonGroup>
-      </Box>
+      <Stack sx={{mt:"1rem", ml:"3rem"}} spacing={3} direction="row" divider={<Divider orientation="vertical" flexItem />}>
+        <Box>
+          <ButtonGroup orientation="vertical">
+            {project?.schedules.map((schedule: Schedule)=><Button variant={schedule.id == selectedSchedule?.id ? 'contained' : 'outlined'} key={schedule.id} onClick={() => setSelectedSchedule(schedule)}>{schedule.title}</Button>)}
+          </ButtonGroup>
+        </Box>
+        {selectedSchedule && GenerateTable(selectedSchedule)}
       </Stack>
     </>
   )
@@ -46,7 +46,7 @@ export default function GenerateTable(schedule: Schedule) {
       <Table sx={{ minWidth: 650}} size="small" aria-label="simple table">
         <TableHead>
           <TableRow>
-            {headings.map((heading)=><TableCell align="left">{heading}</TableCell>)}
+            {headings.map((heading,i)=><TableCell key={`${ heading }-${i}`} align="left">{heading}</TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,7 +56,7 @@ export default function GenerateTable(schedule: Schedule) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               
-              {headings.map((heading)=><TableCell align="left">{entry[heading]}</TableCell>)}
+              {headings.map((heading,j)=><TableCell key={`${ heading }-${i}-${j}`} align="left">{entry[heading]}</TableCell>)}
             </TableRow>
           ))}
         </TableBody>
