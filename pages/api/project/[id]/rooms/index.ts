@@ -27,6 +27,11 @@ export default async function handler(
         }
       })
     }))
+    await prisma.room.deleteMany({
+      where: {
+        projectId
+      }
+    })
     await prisma.room.createMany({
       data
     })

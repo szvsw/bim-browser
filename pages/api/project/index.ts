@@ -10,7 +10,16 @@ export default async function handle(
       include: {schedules: true, levels: {include: {rooms: true}}}
     })
     return res.json(project)
-  } else {
-    return res.status(405).json({ message: 'Bad request: method not allowed.' })
+  } 
+  if (req.method === 'POST') {
+    const {id, title}= JSON.parse(req.body)
+    const result = await prisma.project.upsert({
+      where: {id: id ? Number(id) : -1},
+      create: {title},
+      update: {title}
+    })
+    return res.json(result)
   }
+  return res.status(405).json({ message: 'Bad request: method not allowed.' })
+  
 }

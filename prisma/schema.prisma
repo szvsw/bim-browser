@@ -20,7 +20,7 @@ model Schedule {
   title     String
   data      Json
   headings  String[]
-  project   Project  @relation(fields: [projectId], references: [id])
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId Int
 
   @@unique([projectId, title], name: "scheduleIdentifier")
@@ -28,7 +28,7 @@ model Schedule {
 
 model Level {
   name      String
-  project   Project @relation(fields: [projectId], references: [id])
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId Int
   rooms     Room[]
 
@@ -38,9 +38,9 @@ model Level {
 model Room {
   name      String
   number    String
-  level     Level   @relation(fields: [levelName, projectId], references: [name, projectId])
+  level     Level   @relation(fields: [levelName, projectId], references: [name, projectId], onDelete: Cascade)
   levelName String
-  project   Project @relation(fields: [projectId], references: [id])
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId Int
   edges     Json
   location  Float[]

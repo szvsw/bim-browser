@@ -78,22 +78,23 @@ export const LevelViewer: React.FC<LevelViewerProps> = ({project}) => {
           {project?.levels?.map((level: Level)=><Button key={level.name} onClick={() => setSelectedLevel(level)}>{level.name}</Button>)}
         </ButtonGroup>
       </Box>
-      {selectedLevel && <><Typography>Level map goes here.</Typography>
-      <Sketch
-        setup={setup}
-        draw={(p5: p5Types) => {
-          p5.noLoop();
-        }}
-        mouseClicked={draw}
-        // mouseWheel={handleWheelZoom}
-        // mouseDragged={moveMap}
-        // mouseReleased={() => (lastPosRef.current = null)}
-        // keyPressed={handleZoom}
-        windowResized={(p5: p5Types) => {
-          p5.resizeCanvas(p5.windowWidth, p5.windowHeight);}}
-      />
-      
-      </>}
+      {selectedLevel && 
+        <>
+          <Sketch
+            setup={setup}
+            draw={(p5: p5Types) => {
+              p5.noLoop();
+            }}
+            mouseClicked={draw}
+            // mouseWheel={handleWheelZoom}
+            // mouseDragged={moveMap}
+            // mouseReleased={() => (lastPosRef.current = null)}
+            // keyPressed={handleZoom}
+            windowResized={(p5: p5Types) => {
+              p5.resizeCanvas(p5.windowWidth, p5.windowHeight);}}
+          />
+      </>
+      }
     </Stack>
 
   )
