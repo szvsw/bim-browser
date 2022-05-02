@@ -1,5 +1,7 @@
 # BIMHub Browser
 
+**BIMHub** is a basic proof-of-concept wireframe for a web-based Revit project presentation platform.  Currently, it supports pushing schedules and room plans and leaving comments.
+
 ## Setup
 
 ### Revit/Dynamo Dependencies
