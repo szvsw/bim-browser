@@ -28,9 +28,10 @@ model Schedule {
 
 model Level {
   name      String
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId Int
   rooms     Room[]
+  comments  Comment[]
 
   @@id([name, projectId])
 }
@@ -54,4 +55,13 @@ model Project {
   schedules Schedule[]
   levels    Level[]
   rooms     Room[]
+}
+
+model Comment {
+  id        Int     @id @default(autoincrement())
+  message   String
+  cleared   Boolean @default(false)
+  levelName String
+  level     Level   @relation(fields: [levelName, projectId], references: [name, projectId], onDelete: Cascade)
+  projectId Int
 }

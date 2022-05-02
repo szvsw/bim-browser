@@ -53,3 +53,14 @@ export const getProjects = async () => {
   console.log(data)
   return data
 }
+
+export const createComment = async (data) => {
+  const res = await fetch('/api/comment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  return res.json()
+}

@@ -7,7 +7,7 @@ export default async function handle(
 ): Promise<void> {
   if (req.method === 'GET') {
     const project = await prisma.project.findMany({
-      include: {schedules: true, levels: {include: {rooms: true}}}
+      include: {schedules: true, levels: {include: {comments: true, rooms: true}}}
     })
     return res.json(project)
   } 
