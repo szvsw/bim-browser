@@ -1,22 +1,24 @@
-# Custom server with TypeScript + Nodemon example
+# BIMHub Browser
 
-The example shows how you can use [TypeScript](https://typescriptlang.com) on both the server and the client while using [Nodemon](https://nodemon.io/) to live reload the server code without affecting the Next.js universal code.
+## Setup
 
-Server entry point is `server/index.ts` in development and `dist/index.js` in production.
-The second directory should be added to `.gitignore`.
+### Revit/Dynamo Dependencies
 
-## Preview
+- `DynaWeb` 
+- `Spring Nodes`
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+Set your DynamoPlayer directory to the `/dynamo` folder included in this project.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/custom-server-typescript)
+### Running the Server
 
-## How to use
+A sample `.env` file has been included.  Rename it `.env` and point it to a `PostgreSQL` database on your system.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example custom-server-typescript custom-server-typescript-app
-# or
-yarn create next-app --example custom-server-typescript custom-server-typescript-app
 ```
+npm i
+npx prisma migrate dev
+npm run dev
+```
+
+## Usage
+
+(coming soon)
